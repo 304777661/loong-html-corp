@@ -1,0 +1,98 @@
+@charset "UTF-8"
+@import "mixins", "variables", "transition", "schemes", "extends"
+
+html
+  width: 100%
+  font-family: $font-family
+  color: $black
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  background: $body-background
+  overflow-x: hidden
+  box-sizing: border-box
+  letter-spacing: 1px
+
+#app
+  font-size: $font-normal
+
+img, object, video
+  max-width: 100%
+  border: none
+  outline: none
+  vertical-align: middle
+
+p
+  margin: 0
+  padding: 0
+
+input, textarea
+  width: 100%
+  line-height: inherit
+  border: none
+  outline: none
+  // tap高亮颜色
+  -webkit-tap-highlight-color: transparent
+  // 消除输入框和按钮的原生外观
+  -webkit-appearance: none
+  // 滑动流畅
+  -webkit-overflow-scrolling: touch
+  resize: none
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  font-size: $font-small
+  color: #C9C9C9
+
+// 取消搜索框的的清空按钮
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button
+  display: none
+
+// 去掉自动填充的背景颜色
+input:-webkit-autofill
+  background: #fff
+
+ul, li
+  margin: 0
+  padding: 0
+  list-style: none
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+  color: inherit
+
+.btn
+  $h: 40px
+  display: block
+  min-width: 200px
+  height: $h
+  margin: 15px auto
+  line-height: $h
+  text-align: center
+  font-size: 14px
+  color: #fff
+  background: linear-gradient(270deg, RGBA(9, 102, 116, 1) 0%, RGBA(72, 181, 171, 1) 100%)
+  box-shadow: 0 5px 10px 0 RGBA(72, 181, 171, .5)
+  border-radius: 4px
+  user-select: none
+  white-space: nowrap
+  @extend %text-overflow
+  &.van-button
+    border: none
+  &-large
+    width: 345px
+  &-middle
+    width: 257px
+  &-small
+    display: inline-block
+    width: 50px
+    height: 23px
+    line-height: 23px
+    font-size: 13px
+
+.title
+  font-size: $font-large + 4px
+  font-weight: 500

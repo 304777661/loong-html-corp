@@ -1,0 +1,74 @@
+@charset "UTF-8"
+@import "variables", "mixins"
+
+//@each $fz in $fontSizeRange
+//  .fz#{$fz}
+//    font-size: #{$fz}px
+//
+@each $key, $val in $color-range
+  .#{$key}
+    color: #{$val}
+  .bg-#{$key}
+    background: #{$val}
+
+@each $gap in 5, 10, 15
+  $val: #{$gap}px
+  @if $val == 0px
+    $val: 0
+  .m#{$gap}
+    margin: $val
+  .mt#{$gap}
+    margin-top: $val
+  .mr#{$gap}
+    margin-right: $val
+  .mb#{$gap}
+    margin-bottom: $val
+  .ml#{$gap}
+    margin-left: $val
+  .mx#{$gap}
+    margin-left: $val
+    margin-right: $val
+  .my#{$gap}
+    margin-top: $val
+    margin-bottom: $val
+  .p#{$gap}
+    padding: $val
+  .pt#{$gap}
+    padding-top: $val
+  .pr#{$gap}
+    padding-right: $val
+  .pb#{$gap}
+    padding-bottom: $val
+  .pl#{$gap}
+    padding-left: $val
+  .px#{$gap}
+    padding-left: $val
+    padding-right: $val
+  .py#{$gap}
+    padding-top: $val
+    padding-bottom: $val
+
+@each $deg in 90, -90, 180, -180
+  .rotate#{$deg}
+    transform: rotate(#{$deg}deg)
+
+.clearfix
+  @include clearfix
+
+.abscenter
+  @include abscenter
+
+.text-overflow
+  @include text-overflow
+
+.text-center
+  text-align: center
+
+.mask
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, .7)
+  z-index: 100
