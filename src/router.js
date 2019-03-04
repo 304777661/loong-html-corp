@@ -29,6 +29,10 @@ const router = new Router({
     path: '/pug',
     name: 'Pug',
     component: view('PugSample')
+  }, {
+    path: '/manage/firmInfo',
+    name: 'manageFirmInfo',
+    component: view('manage/firmInfo/Index')
   }]
 })
 

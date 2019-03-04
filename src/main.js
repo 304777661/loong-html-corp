@@ -8,22 +8,27 @@ import './api/config'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
-import { Button, Cell, CellGroup, Field, List, Loading, Rate, Toast } from 'vant'
+import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel } from 'vant'
 import loading from './components/Loading'
+import NoData from './components/NoData'
 
-Vue.use(CellGroup)
+Vue.use(Icon)
+  .use(CellGroup)
   .use(Cell)
   .use(Field)
   .use(Button)
   .use(Rate)
   .use(List)
   .use(Toast)
+  .use(Panel)
   .use(Loading)
 
 Vue.component('loading', loading)
+Vue.component('NoData', NoData)
 
 Vue.prototype.$api = api
 Vue.prototype.$enums = enums
+Vue.prototype.$pageSize = 10
 Vue.prototype.$filters = filters
 // 全局注册过滤器
 Object.keys(filters).forEach(filterName => {
