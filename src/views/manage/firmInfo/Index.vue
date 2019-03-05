@@ -1,5 +1,5 @@
 <template>
-  <div class="notice">
+  <div>
     <search v-model="keywords" @search="onSearch"></search>
     <no-data v-show="!loading && !testData.length"/>
     <div class="supplier-list" v-if="testData.length">
@@ -11,18 +11,20 @@
              v-for="(item,index) in testData"
              :key="index"
              @click="goDetail(item.id)">
-          <div class="supplier-parent">
-            <div class="supplier-img"><img src="../../../assets/images/null-header.png" alt=""></div>
-            <div>
-              <div class="supplier-title">深圳市研会科技有限公司&nbsp;</div>
-              <p></p>
+          <div>
+            <div class="supplier-parent">
+              <div class="supplier-img"><img src="../../../assets/images/null-header.png" alt=""></div>
+              <div>
+                <div class="supplier-title">深圳市研会科技有限公司&nbsp;&nbsp;<van-button plain size="mini" type="info">销售:张三</van-button></div>
+                <div class="supplier-name"><span>毛静云</span> | <span>18536272817</span></div>
+              </div>
             </div>
+            <p class="supplier-p"><span>应收：¥5000.00</span><span>|</span><span>实收：¥5000.00</span></p>
+            <div class="line"></div>
           </div>
-
         </div>
       </van-list>
     </div>
-    <div>12345</div>
   </div>
 </template>
 
@@ -57,18 +59,18 @@
     },
     methods: {
       async loadData (resetList = false) {
-        this.loading = true
+        this.loading = false
         if (resetList) {
           this.testData = []
           this.pageNo = 1
         }
-        let data = await this.$api.teacher.queryNoticePage(this.getQuery())
-        if (resetList) {
-          this.testData = data.list
-        } else {
-          this.testData = this.testData.concat(data.list)
-        }
-        this.finished = !data.hasNextPage
+        // let data = await this.$api.teacher.queryNoticePage(this.getQuery())
+        // if (resetList) {
+        //   this.testData = data.list
+        // } else {
+        //   this.testData = this.testData.concat(data.list)
+        // }
+        // this.finished = !data.hasNextPage
         this.loading = false
         this.pageNo++
       },
@@ -104,19 +106,36 @@
 </script>
 
 <style scoped lang="sass">
-
-  .supplier-list
-    padding: 0 20px
-  .supplier-parent
-    display: flex
-    justify-content: center
-    align-content: center
-  .supplier-title
-    /*font-size: 22px*/
-    /*color: #333333*/
-    /*padding: 0 7px*/
-    .supplier-img
-    width: 24px
-    height: 29px
-    margin-right: 26px
+  .supplier
+    &-list
+      padding: 0 20px
+    &-parent
+      display: flex
+      justify-content: center
+      align-content: center
+    &-title
+      font-size: 16px
+      color: #333333
+      padding: 7px 0
+    &-img
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-right: 26px
+    &-name
+      font-size: 13px
+      color: rgba(155,155,155,1)
+    &-p
+      margin-top: 10px
+      background: #F8FAFC
+      border-radius: 2px
+      padding: 6px 0
+      font-size: 13px
+      color: rgba(155,155,155,1)
+      display: flex
+      justify-content: space-between
+      padding: 0 20px
+    .line
+      border-bottom: 1px solid #EEEEEE
+      margin-top: 10px
 </style>

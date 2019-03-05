@@ -5,12 +5,14 @@ import 'lib-flexible'
 import 'normalize.css'
 import './assets/styles/main.sass'
 import './api/config'
+import './assets/styles/vant.sass'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
 import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
+
 
 Vue.use(Icon)
   .use(CellGroup)
