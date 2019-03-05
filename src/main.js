@@ -9,10 +9,9 @@ import './assets/styles/vant.sass'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
-import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel, Collapse, CollapseItem } from 'vant'
+import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel, DatetimePicker, Popup, Collapse, CollapseItem } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
-
 
 Vue.use(Icon)
   .use(CellGroup)
@@ -26,6 +25,8 @@ Vue.use(Icon)
   .use(Loading)
   .use(Collapse)
   .use(CollapseItem)
+  .use(DatetimePicker)
+  .use(Popup)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)

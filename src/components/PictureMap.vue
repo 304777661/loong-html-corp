@@ -1,30 +1,13 @@
-<template>
-  <ul class="picture-map">
-    <li class="picture-map__li"
-        v-for="(item, idx) in pictures"
-        :key="idx"
-        @click="doPreview(idx)">
-      <img :src="item" class="picture-map__image"/>
-      <span class="icon icon-close"
-            v-if="upload"
-            @click.stop="doDelete(idx)"></span>
-    </li>
-    <li class="picture-map__li picture-map__li--add"
-        v-if="pictures && pictures.length < 9 && upload">
-      <input type="file"
-             id="file-input"
-             accept="image/*"
-             multiple
-             hidden
-             @change="inputChanged">
-      <label for="file-input" class="icon icon-add"></label>
-    </li>
-    <!--<li class="picture-map__li picture-map__li&#45;&#45;add"-->
-    <!--v-if="!pictures || !pictures.length">-->
-    <!--暂无图片-->
-    <!--</li>-->
-    <slot/>
-  </ul>
+<template lang="pug">
+  ul.picture-map
+    li.picture-map__li(v-for="(item, idx) in pictures" :key="idx" @click="doPreview(idx)")
+      img.picture-map__image(:src="item")
+      span.icon.icon-close(v-if="upload" @click.stop="doDelete(idx)")
+    li.picture-map__li.picture-map__li--add(v-if="pictures && pictures.length < 9 && upload")
+      input(type="file" id="file-input" accept="image/*" multiple hidden @change="inputChanged")
+      label(for="file-input")
+        img.icon-add(src="~@img/ic_grey_add.png")
+    slot/
 </template>
 
 <script>
@@ -121,14 +104,11 @@
         background: $body-background
         @include hor-center-center
     &__image
-      // float: left
-      // vertical-align: top
       position: absolute
       left: 0
       top: 0
       width: 100%
       height: 100%
-    // display: inline-block
     .icon-close
       position: absolute
       margin: 0
@@ -144,6 +124,6 @@
       color: #fff
       background: rgba(0, 0, 0, .4)
     .icon-add
-      font-size: 50px
+      @include rect(40px)
 
 </style>

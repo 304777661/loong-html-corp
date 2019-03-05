@@ -11,17 +11,6 @@ function view (path) {
 
 const router = new Router({
   routes: [{
-    path: '/mine',
-    component: view('EmptyTemplate'),
-    children: [{
-      path: 'info',
-      name: 'Info',
-      component: view('mine/Info'),
-      meta: {
-        title: '个人信息'
-      }
-    }]
-  }, {
     path: '/about',
     name: 'About',
     component: view('About')
@@ -62,6 +51,31 @@ const router = new Router({
       component: view('project/TaskDetail'),
       meta: {
         title: '任务详情'
+      }
+    }]
+  }, {
+    path: '/sale',
+    component: view('EmptyTemplate'),
+    children: [{
+      path: 'audit',
+      name: 'SaleAudit',
+      component: view('sale/audit/Index'),
+      meta: {
+        title: '待审核'
+      }
+    }, {
+      path: 'borrow',
+      name: 'BorrowList',
+      component: view('sale/audit/BorrowList'),
+      meta: {
+        title: '借货列表'
+      }
+    }, {
+      path: 'receipt',
+      name: 'ReceiptList',
+      component: view('sale/audit/ReceiptList'),
+      meta: {
+        title: '借货列表'
       }
     }]
   }]
