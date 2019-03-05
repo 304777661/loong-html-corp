@@ -15,11 +15,11 @@
             <div class="supplier-parent">
               <div class="supplier-img"><img src="../../../assets/images/null-header.png" alt=""></div>
               <div>
-                <div class="supplier-title">深圳市研会科技有限公司&nbsp;&nbsp;<van-button plain size="mini" type="info">销售:张三</van-button></div>
-                <div class="supplier-name"><span>毛静云</span> | <span>18536272817</span></div>
+                <div class="supplier-title"><span>{{item.title}}</span>&nbsp;&nbsp;<van-button plain size="mini" type="info">{{item.sell}}</van-button></div>
+                <div class="supplier-name"><span>{{item.name}}</span> | <span>{{item.phone}}</span></div>
               </div>
             </div>
-            <p class="supplier-p"><span>应收：¥5000.00</span><span>|</span><span>实收：¥5000.00</span></p>
+            <p class="supplier-p"><span>应收：¥{{5000.00}}</span><span>|</span><span>实收：<font :color="colorRed">¥5000.00</font></span></p>
             <div class="line"></div>
           </div>
         </div>
@@ -40,11 +40,15 @@
         keywords: null,
         pageNo: 1,
         // testData: [],
+        colorRed: '#F44336',
         loading: false,
         finished: false,
         testData: [{
           id: 1,
-          title: '1',
+          title: '深圳市研会科技有限公司1111111111111',
+          sell: '销售:张三',
+          name: '毛静云',
+          phone: '18536272817',
           content: '2',
           createdTime: '3'
         }]
@@ -83,13 +87,6 @@
       goDetail (id) {
         this.$router.push(`/teacher/notice/detail?id=${id}`)
       },
-      handleTabChange (tabIndex) {
-        if (this.curTabIndex === tabIndex) {
-          return
-        }
-        this.curTabIndex = tabIndex
-        this.loadData(true)
-      },
       getQuery () {
         return {
           noticeType: this.curTabIndex === 0 ? 'NOTICE' : 'SCHOOL_RULE',
@@ -114,9 +111,13 @@
       justify-content: center
       align-content: center
     &-title
-      font-size: 16px
-      color: #333333
       padding: 7px 0
+      span
+        display: inline-block
+        width: 200px
+        font-size: 16px
+        color: #333333
+        @include text-overflow
     &-img
       display: flex
       justify-content: center
@@ -129,12 +130,11 @@
       margin-top: 10px
       background: #F8FAFC
       border-radius: 2px
-      padding: 6px 0
       font-size: 13px
       color: rgba(155,155,155,1)
       display: flex
       justify-content: space-between
-      padding: 0 20px
+      padding: 6px 20px
     .line
       border-bottom: 1px solid #EEEEEE
       margin-top: 10px

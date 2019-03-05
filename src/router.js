@@ -32,7 +32,8 @@ const router = new Router({
   }, {
     path: '/manage/firmInfo',
     name: 'manageFirmInfo',
-    component: view('manage/firmInfo/Index')
+    component: view('manage/firmInfo/Index'),
+    meta: { title: '供应商信息' }
   }]
 })
 

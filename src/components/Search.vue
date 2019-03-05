@@ -51,21 +51,21 @@
   .search
     position: relative
     padding: $default-gap
-    background: $white
+    background: $search-bg
     margin-bottom: 10px
     &__input
       width: 100%
       height: $search-input-height
       line-height: $search-input-height
       padding-left: 30px
-      background: #f2f2f2
+      background: #E9EAEC
       border-radius: 2px
     &__icon
       position: absolute
       left: 22px
       top: 50%
       transform: translateY(-50%)
-      color: $black
+      color: #B2B2B2
       font-size: $font-normal
       font-weight: bold
 </style>
