@@ -13,7 +13,6 @@ import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel
 import loading from './components/Loading'
 import NoData from './components/NoData'
 
-
 Vue.use(Icon)
   .use(CellGroup)
   .use(Cell)
