@@ -33,6 +33,31 @@ const router = new Router({
     path: '/manage/firmInfo',
     name: 'manageFirmInfo',
     component: view('manage/firmInfo/Index')
+  }, {
+    path: '/project',
+    component: view('EmptyTemplate'),
+    children: [{
+      path: 'list',
+      name: 'ProjectList',
+      component: view('project/List'),
+      meta: {
+        title: '项目列表'
+      }
+    }, {
+      path: 'detail',
+      name: 'ProjectDetail',
+      component: view('project/Detail'),
+      meta: {
+        title: '项目详情'
+      }
+    }, {
+      path: 'task',
+      name: 'TaskDetail',
+      component: view('project/TaskDetail'),
+      meta: {
+        title: '任务详情'
+      }
+    }]
   }]
 })
 
