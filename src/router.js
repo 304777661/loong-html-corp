@@ -47,6 +47,24 @@ const router = new Router({
         title: '任务详情'
       }
     }]
+  }, {
+    path: '/sale',
+    component: view('EmptyTemplate'),
+    children: [{
+      path: 'audit',
+      name: 'SaleAudit',
+      component: view('sale/audit/Index'),
+      meta: {
+        title: '待审核'
+      }
+    }, {
+      path: 'borrow',
+      name: 'BorrowList',
+      component: view('sale/audit/BorrowList'),
+      meta: {
+        title: '借货列表'
+      }
+    }]
   }]
 })
 
