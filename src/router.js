@@ -11,17 +11,6 @@ function view (path) {
 
 const router = new Router({
   routes: [{
-    path: '/mine',
-    component: view('EmptyTemplate'),
-    children: [{
-      path: 'info',
-      name: 'Info',
-      component: view('mine/Info'),
-      meta: {
-        title: '个人信息'
-      }
-    }]
-  }, {
     path: '/about',
     name: 'About',
     component: view('About')

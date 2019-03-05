@@ -3,10 +3,10 @@
     title-line(:title="projectTitle")
     .node-cell(v-for="(item,idx) in dataList" :key="idx")
       .timeline
-        .v-line(:class="idx === 0 ? 'line-inactive': 'line-active'")
+        .v-line(:class="idx === 0 ? 'line-inactive' : 'line-active'")
         .outer-ring
           .inner-ring
-        .v-line(:class="idx === dataList.length - 1 ? 'line-inactive': 'line-active'")
+        .v-line(:class="idx === dataList.length - 1 ? 'line-inactive' : 'line-active'")
       .node-info
         .info
           p.title {{item.title}}

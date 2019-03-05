@@ -11,7 +11,7 @@
     "axios": "^0.18.0",
     "lib-flexible": "^0.3.2",
     "normalize.css": "^8.0.1",
-    "vant": "^1.5.0",
+    "vant": "^1.6.8",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
