@@ -50,14 +50,14 @@
       async loadData (resetList = true) {
         this.loading = true
         if (resetList) {
-          this.testData = []
+          this.dataList = []
           this.pageNo = 1
         }
         let data = await this.$api.XXX({})
         if (resetList) {
-          this.testData = data.list
+          this.dataList = data.list
         } else {
-          this.testData = this.testData.concat(data.list)
+          this.dataList = this.dataList.concat(data.list)
         }
         this.finished = !data.hasNextPage
         this.loading = false
