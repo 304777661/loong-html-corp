@@ -9,7 +9,7 @@
              ref="searchInput"
              @input="onInput"
              @keyup.13=show()
-             @keydown.enter="search">
+             @keydown.enter="search"/>
       <van-icon name="search" class="search__icon"></van-icon>
     </form>
   </div>

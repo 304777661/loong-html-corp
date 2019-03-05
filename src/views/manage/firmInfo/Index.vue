@@ -1,37 +1,33 @@
-<template>
-  <div>
-    <search v-model="keywords" @search="onSearch"></search>
-    <no-data v-show="!loading && !testData.length"/>
-    <div class="supplier-list" v-if="testData.length">
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        @load="onLoad">
-        <div class="supplier"
-             v-for="(item,index) in testData"
-             :key="index"
-             @click="goDetail(item.id)">
-          <div>
-            <div class="supplier-parent">
-              <div class="supplier-img"><img src="../../../assets/images/null-header.png" alt=""></div>
-              <div>
-                <div class="supplier-title"><span>{{item.title}}</span>&nbsp;&nbsp;<van-button plain size="mini" type="info">{{item.sell}}</van-button></div>
-                <div class="supplier-name"><span>{{item.name}}</span> | <span>{{item.phone}}</span></div>
-              </div>
-            </div>
-            <p class="supplier-p"><span>应收：¥{{5000.00}}</span><span>|</span><span>实收：<font :color="colorRed">¥5000.00</font></span></p>
-            <div class="line"></div>
-          </div>
-        </div>
-      </van-list>
-    </div>
-  </div>
+<template lang="pug">
+  .firm-index
+    search(v-model="keywords" placeholder="输入客户名称、联系人、联系电话搜索" @search="onSearch")
+    no-data(v-show="!loading && !testData.length")
+    .supplier-list(v-if="testData.length")
+      van-list(v-model="loading" :finished="finished" @load="onLoad")
+        .supplier(v-for="(item,index) in testData" :key="index" @click="goDetail(item.id)")
+          .supplier-parent
+            .supplier-img
+              img(src="../../../assets/images/null-header.png")
+            .nulldiv
+              .supplier-title
+                span {{item.title}}
+                van-button(plain size="mini" type="info") {{item.sell}}
+              .supplier-name
+                span {{item.name}}
+                span |
+                span {{item.phone}}
+          p.supplier-p
+            span 应收：¥{{item.shouldReceive}}
+            span |
+            span 实收：
+              font() 实收：{{item.realReceive}}
+          .line
 </template>
 
 <script>
   import Search from '@components/Search'
-
   export default {
+    name: 'FirmInfoIndex',
     components: {
       Search
     },
@@ -49,8 +45,16 @@
           sell: '销售:张三',
           name: '毛静云',
           phone: '18536272817',
-          content: '2',
-          createdTime: '3'
+          shouldReceive: '5000.00',
+          realReceive: '4000.00'
+        }, {
+          id: 2,
+          title: '深圳市研会科技有限公司1111111111111',
+          sell: '销售:张三',
+          name: '毛静云',
+          phone: '18536272817',
+          shouldReceive: '5000.00',
+          realReceive: '4000.00'
         }]
       }
     },
@@ -85,7 +89,7 @@
         this.loadData()
       },
       goDetail (id) {
-        this.$router.push(`/teacher/notice/detail?id=${id}`)
+        this.$router.push(`/manage/SupplierDetail?id=${id}`)
       },
       getQuery () {
         return {
@@ -98,6 +102,7 @@
     },
     async created () {
       // this.loadData(true)
+
     }
   }
 </script>
@@ -118,6 +123,8 @@
         font-size: 16px
         color: #333333
         @include text-overflow
+      button
+        vertical-align: text-bottom
     &-img
       display: flex
       justify-content: center

@@ -34,6 +34,36 @@ const router = new Router({
     name: 'manageFirmInfo',
     component: view('manage/firmInfo/Index'),
     meta: { title: '供应商信息' }
+  }, {
+    path: '/manage/SupplierDetail',
+    name: 'SupplierDetail',
+    component: view('manage/firmInfo/SupplierDetail'),
+    meta: { title: '供应商详情' }
+  }, {
+    path: '/project',
+    component: view('EmptyTemplate'),
+    children: [{
+      path: 'list',
+      name: 'ProjectList',
+      component: view('project/List'),
+      meta: {
+        title: '项目列表'
+      }
+    }, {
+      path: 'detail',
+      name: 'ProjectDetail',
+      component: view('project/Detail'),
+      meta: {
+        title: '项目详情'
+      }
+    }, {
+      path: 'task',
+      name: 'TaskDetail',
+      component: view('project/TaskDetail'),
+      meta: {
+        title: '任务详情'
+      }
+    }]
   }]
 })
 

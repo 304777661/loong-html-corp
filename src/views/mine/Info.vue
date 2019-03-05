@@ -22,4 +22,6 @@
       font-size: 15px
       font-weight: 600
       line-height: 21px
+      @include hor-center-center
+
 </style>
