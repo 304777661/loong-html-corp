@@ -1,6 +1,6 @@
 <template lang="pug">
   .borrow-list
-    .goods-list(v-for="(item,idx) in dataList" :key="idx")
+    .goods(v-for="(item,idx) in dataList" :key="idx")
       goods-item(:item="item")
 </template>
 

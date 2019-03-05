@@ -64,6 +64,13 @@ const router = new Router({
       meta: {
         title: '借货列表'
       }
+    }, {
+      path: 'receipt',
+      name: 'ReceiptList',
+      component: view('sale/audit/ReceiptList'),
+      meta: {
+        title: '借货列表'
+      }
     }]
   }]
 })
