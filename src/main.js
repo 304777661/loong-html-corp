@@ -9,7 +9,7 @@ import './assets/styles/vant.sass'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
-import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel } from 'vant'
+import { Icon, Button, Cell, CellGroup, Field, List, Loading, Rate, Toast, Panel, DatetimePicker, Popup } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
 
@@ -23,6 +23,8 @@ Vue.use(Icon)
   .use(Toast)
   .use(Panel)
   .use(Loading)
+  .use(DatetimePicker)
+  .use(Popup)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)

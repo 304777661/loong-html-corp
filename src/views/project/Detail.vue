@@ -1,6 +1,6 @@
 <template lang="pug">
   .project-detail
-    p.project-name {{projectTitle}}
+    title-line(:title="projectTitle")
     .node-cell(v-for="(item,idx) in dataList" :key="idx")
       .timeline
         .v-line(:class="idx === 0 ? 'line-inactive': 'line-active'")
@@ -18,8 +18,13 @@
 </template>
 
 <script>
+  import TitleLine from '@components/TitleLine'
+
   export default {
     name: 'Detail',
+    components: {
+      TitleLine
+    },
     data () {
       return {
         projectTitle: '2P公端护套2P公端护套2P公端护套',
@@ -40,13 +45,6 @@
 
 <style scoped lang='sass'>
   .project-detail
-    .project-name
-      font-size: 16px
-      line-height: 22px
-      font-weight: 600
-      background: $body-background
-      padding: 10px 12px
-      text-align: start
     .node-cell
       height: 98px
       background: white

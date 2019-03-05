@@ -1,11 +1,7 @@
-<template>
-  <div class="my-button">
-    <div class="my-button-wrapper">
-      <van-button class="btn"
-                  @click="btnClick">{{content}}
-      </van-button>
-    </div>
-  </div>
+<template lang="pug">
+  .my-button
+    .my-button-wrapper
+      .content(@click="btnClick") {{content}}
 </template>
 
 <script>
@@ -33,19 +29,21 @@
     background: #f5f5f5
     width: 100vw
     height: 60px
-    bottom: 0
+    bottom: 40px
     left: 0
     right: 0
-    .btn
+    &:active
+      transform: scale(0.98)
+    .content
       position: fixed
       left: 50%
       color: $white
-      bottom: $default-gap
       width: $btn-width
       height: $btn-height
       line-height: $btn-height
       margin-left: -$btn-width / 2
       border-radius: 4px
-      background: $dark-blue
+      text-align: center
+      background: #4A77AF
       font-size: 16px
 </style>
