@@ -52,7 +52,6 @@
     position: relative
     padding: $default-gap
     background: $search-bg
-    margin-bottom: 10px
     &__input
       width: 100%
       height: $search-input-height

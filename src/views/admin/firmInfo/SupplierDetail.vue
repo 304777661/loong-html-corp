@@ -3,7 +3,7 @@
       .client
         .title
           span {{clientData.title}}
-          span.edit(@click="goOtherPage(`/manage/firmInfo`)")
+          span.edit(@click="goOtherPage(`/admin/firmInfo`)")
             i.van-icon.van-icon-edit &nbsp;
             | 编辑
         .line
@@ -34,8 +34,8 @@
               span 销售员
               span {{ clientData.buyProple }}
       van-cell-group
-        van-cell(title="历史订单" is-link value="10单" @click="goOtherPage(`/manage/firmInfo`)")
-        van-cell(title="总交易额" is-link value="¥200,000.00" @click="goOtherPage(`/manage/firmInfo`)")
+        van-cell(title="历史订单" is-link value="10单" @click="goOtherPage(`/admin/firmInfo`)")
+        van-cell(title="总交易额" is-link value="¥200,000.00" @click="goOtherPage(`/admin/firmInfo`)")
         van-cell(title="应收款" is-link value="¥200,000.00")
         van-cell(title="逾期欠款" is-link value-class="color-red" value="¥200,000.00")
 </template>

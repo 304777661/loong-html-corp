@@ -15,13 +15,8 @@
 </template>
 
 <script>
-  import Search from '@components/Search'
-
   export default {
     name: 'ProjectList',
-    components: {
-      Search
-    },
     data () {
       return {
         keywords: null,

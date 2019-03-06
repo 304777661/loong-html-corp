@@ -19,14 +19,25 @@ const router = new Router({
     name: 'Pug',
     component: view('PugSample')
   }, {
-    path: '/manage/firmInfo',
+    path: '/admin/firmInfo',
     name: 'manageFirmInfo',
-    component: view('manage/firmInfo/Index'),
+    component: view('admin/firmInfo/Index'),
     meta: { title: '供应商信息' }
   }, {
-    path: '/manage/SupplierDetail',
+    path: '/sell',
+    component: view('EmptyTemplate'),
+    children: [{
+      path: 'goodsManage/manageList',
+      name: 'ProjectList',
+      component: view('sell/goodsManage/ManageList'),
+      meta: {
+        title: '商品管理列表'
+      }
+    }]
+  }, {
+    path: '/admin/SupplierDetail',
     name: 'SupplierDetail',
-    component: view('manage/firmInfo/SupplierDetail'),
+    component: view('admin/firmInfo/SupplierDetail'),
     meta: { title: '供应商详情' }
   }, {
     path: '/project',
@@ -80,7 +91,6 @@ const router = new Router({
     }]
   }]
 })
-
 router.beforeEach((to, from, next) => {
   setWechatTitle(to.meta.title || '武汉昌龙企业微信')
   Toast.clear()

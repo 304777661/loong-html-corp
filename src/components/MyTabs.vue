@@ -22,7 +22,7 @@
     },
     data () {
       return {
-        lineWidth: 30,
+        lineWidth: 18,
         curTabIndex: 0
       }
     },
@@ -38,10 +38,12 @@
   .my-tabs
     /deep/ .van-tabs__line
       bottom: 22px
-      background-color: $black
+      background: #333333
+      border-radius: 2px
     /deep/ .van-tab
+      background-color: #F8FAFC
       color: #ccc
       &--active
-        color: $black
+        color: #333333
 
 </style>
