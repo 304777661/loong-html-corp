@@ -22,8 +22,8 @@
         .table-cell
           span 销售员
           span {{ clientData.buyProple }}
-        van-collapse(v-model="activeNames")
-          van-collapse-item(title="展示" name="1")
+        van-collapse(v-model="activeNames" @click="showHide")
+          van-collapse-item(title="展开" name="1")
             .table-cell
               span 销售员
               span {{ clientData.buyProple }}
@@ -33,7 +33,11 @@
             .table-cell
               span 销售员
               span {{ clientData.buyProple }}
-      van-cell(title="单元格" is-link value="内容" @click="goOtherPage(`/manage/firmInfo`)")
+      van-cell-group
+        van-cell(title="历史订单" is-link value="10单" @click="goOtherPage(`/manage/firmInfo`)")
+        van-cell(title="总交易额" is-link value="¥200,000.00" @click="goOtherPage(`/manage/firmInfo`)")
+        van-cell(title="应收款" is-link value="¥200,000.00")
+        van-cell(title="逾期欠款" is-link value-class="color-red" value="¥200,000.00")
 </template>
 
 <script>
@@ -56,7 +60,8 @@
     methods: {
       goOtherPage (url) {
         this.$router.push(`${url}?id=` + this.id)
-      }
+      },
+      showHide () {}
     },
     created () {
 
@@ -68,7 +73,7 @@
 
 <style scoped lang='sass'>
   .client
-    padding: 18px
+    padding: 18px 18px 0 18px
     background-color: #F8FAFC
     .title
       font-size: 16px
@@ -101,7 +106,10 @@
         flex: none
       .van-icon
         color: #138BED
+  /deep/ .color-red
+    color: #F44336
     /deep/ .van-collapse-item__content
       padding: 0
       background-color: transparent
+
 </style>
