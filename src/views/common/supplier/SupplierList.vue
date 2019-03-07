@@ -42,7 +42,7 @@
         testData: [{
           id: 1,
           title: '深圳市研会科技有限公司1111111111111',
-          sell: '销售:张三',
+          sell: '销售:张三snasasa',
           name: '毛静云',
           phone: '18536272817',
           shouldReceive: '5000.00',
@@ -117,7 +117,11 @@
       align-content: center
     &-title
       padding: 7px 0
-      span
+      span.van-button__text
+        width: 60px
+        display: inline-block
+        @include text-overflow
+      >span
         display: inline-block
         width: 200px
         font-size: 16px

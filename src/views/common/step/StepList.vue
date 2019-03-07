@@ -24,6 +24,7 @@
         loading: false,
         finished: false,
         dataList: [{
+          id: 1,
           title: '2P公端护套2P公端护套2P公端护套2P2P公端护套2P公端护套2P公端护套2P',
           count: '4节点',
           createdTime: '2019-01-20 10:10:10'
@@ -64,7 +65,9 @@
       onLoad () {
         // this.loadData()
       },
-      goDetail () {}
+      goDetail (id) {
+        this.$router.push(`/common/StepDetail?id=$(id)`)
+      }
     },
     async onCreated () {
       // await this.loadData()

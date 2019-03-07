@@ -25,7 +25,8 @@ import {
   Collapse,
   CollapseItem,
   Tab,
-  Tabs
+  Tabs,
+  Actionsheet
 } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
@@ -48,6 +49,7 @@ Vue.use(Icon)
   .use(Popup)
   .use(Tab)
   .use(Tabs)
+  .use(Actionsheet)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)

@@ -2,6 +2,7 @@
   <div class="my-tabs">
     <van-tabs v-model="curTabIndex" :swipeable="swipeable" :line-width="lineWidth" @change="handleTabChanged">
       <van-tab v-for="item in tabs" :title="item.label" :key="item.id">
+        <van-actionsheet v-model="show" :actions="actions" @select="onSelect"></van-actionsheet>
       </van-tab>
     </van-tabs>
   </div>

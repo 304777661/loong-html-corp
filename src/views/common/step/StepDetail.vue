@@ -1,7 +1,7 @@
 <template lang="pug">
   .project-detail
     title-line(:title="projectTitle")
-    .node-cell(v-for="(item,idx) in dataList" :key="idx")
+    .node-cell(v-for="(item,idx) in dataList" :key="idx" @click="goOtherPage(item.id)")
       .timeline
         .v-line(:class="idx === 0 ? 'line-inactive' : 'line-active'")
         .outer-ring
@@ -39,7 +39,11 @@
         }]
       }
     },
-    methods: {}
+    methods: {
+      goOtherPage (id) {
+        this.$router.push(`/common/StepTaskDetail?id=$(id)`)
+      }
+    }
   }
 </script>
 

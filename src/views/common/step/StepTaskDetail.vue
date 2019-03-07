@@ -37,7 +37,11 @@
       }
     },
     methods: {
-      doSave () {},
+      doSave () {
+        // await this.$api.teacher.addTeachGroupActivity(this.activity)
+        this.$toast.success('保存成功')
+        this.$router.back()
+      },
       doPick () {
         this.showTimePicker = true
       },

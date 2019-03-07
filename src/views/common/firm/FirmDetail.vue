@@ -1,43 +1,40 @@
 <template lang="pug">
-    .supplierDetail
-      .client
-        .title
-          span {{clientData.title}}
-          span.edit(@click="goOtherPage(`/admin/firmInfo`)")
-            i.van-icon.van-icon-edit &nbsp;
-            | 编辑
-        .line
-        .table-cell
-          span 联系人
-          span {{ clientData.name }}
-        .table-cell
-          span 联系电话
-          span {{ clientData.phone }}
-        .table-cell
-          span 地址
-          span {{ clientData.address | summary(30)}}
-        .table-cell
-          span 归属公司
-          span {{ clientData.returned }}
-        .table-cell
-          span 销售员
-          span {{ clientData.buyProple }}
-        van-collapse(v-model="activeNames" @click="showHide")
-          van-collapse-item(title="展开" name="1")
-            .table-cell
-              span 销售员
-              span {{ clientData.buyProple }}
-            .table-cell
-              span 销售员
-              span {{ clientData.buyProple }}
-            .table-cell
-              span 销售员
-              span {{ clientData.buyProple }}
-      van-cell-group
-        van-cell(title="历史订单" is-link value="10单" @click="goOtherPage(`/admin/firmInfo`)")
-        van-cell(title="总交易额" is-link value="¥200,000.00" @click="goOtherPage(`/admin/firmInfo`)")
-        van-cell(title="应收款" is-link value="¥200,000.00")
-        van-cell(title="逾期欠款" is-link value-class="color-red" value="¥200,000.00")
+  .supplierDetail
+    .client
+      .title
+        span {{clientData.title}}
+      .line
+      .table-cell
+        span 联系人
+        span {{ clientData.name }}
+      .table-cell
+        span 联系电话
+        span {{ clientData.phone }}
+      .table-cell
+        span 地址
+        span {{ clientData.address | summary(30)}}
+      .table-cell
+        span 归属公司
+        span {{ clientData.returned }}
+      .table-cell
+        span 销售员
+        span {{ clientData.buyProple }}
+      van-collapse(v-model="activeNames" @change="collapseTitle=collapseTitle==='展开'?'收起':'展开'")
+        van-collapse-item(:title="collapseTitle" name="1")
+          .table-cell
+            span 销售员
+            span {{ clientData.buyProple }}
+          .table-cell
+            span 销售员
+            span {{ clientData.buyProple }}
+          .table-cell
+            span 销售员
+            span {{ clientData.buyProple }}
+    van-cell-group
+      van-cell(title="历史订单" is-link value="10单" @click="goOtherPage(`/admin/supplier`)")
+      van-cell(title="总交易额" is-link value="¥200,000.00" @click="goOtherPage(`/admin/supplier`)")
+      van-cell(title="应收款" is-link value="¥200,000.00")
+      van-cell(title="逾期欠款" is-link value-class="color-red" value="¥200,000.00")
 </template>
 
 <script>
@@ -47,6 +44,7 @@
       return {
         id: this.$route.query.id,
         activeNames: ['2'],
+        collapseTitle: '展开',
         clientData: {
           title: '深圳市研会科技有限公司',
           name: '毛静云',
@@ -106,8 +104,8 @@
         flex: none
       .van-icon
         color: #138BED
-  /deep/ .color-red
-    color: #F44336
+    /deep/ .color-red
+      color: #F44336
     /deep/ .van-collapse-item__content
       padding: 0
       background-color: transparent
