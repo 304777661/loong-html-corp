@@ -31,7 +31,9 @@ import {
   Picker,
   Card,
   Tag,
-  Stepper
+  Stepper,
+  Checkbox,
+  CheckboxGroup
 } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
@@ -59,6 +61,8 @@ Vue.use(Icon)
   .use(Card)
   .use(Tag)
   .use(Stepper)
+  .use(Checkbox)
+  .use(CheckboxGroup)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)
