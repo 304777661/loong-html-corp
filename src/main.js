@@ -9,6 +9,7 @@ import './assets/styles/vant.sass'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
+import eventBus from './utils/eventBus'
 import {
   Icon,
   Button,
@@ -26,7 +27,11 @@ import {
   CollapseItem,
   Tab,
   Tabs,
-  Actionsheet
+  Actionsheet,
+  Picker,
+  Card,
+  Tag,
+  Stepper
 } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
@@ -50,6 +55,10 @@ Vue.use(Icon)
   .use(Tab)
   .use(Tabs)
   .use(Actionsheet)
+  .use(Picker)
+  .use(Card)
+  .use(Tag)
+  .use(Stepper)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)
@@ -60,6 +69,7 @@ Vue.prototype.$api = api
 Vue.prototype.$enums = enums
 Vue.prototype.$pageSize = 10
 Vue.prototype.$filters = filters
+Vue.prototype.$eventBus = eventBus
 // 全局注册过滤器
 Object.keys(filters).forEach(filterName => {
   Vue.filter(`${filterName}`, filters[filterName])

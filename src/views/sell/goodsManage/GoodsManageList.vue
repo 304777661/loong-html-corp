@@ -75,20 +75,20 @@
     },
     methods: {
       async loadData (resetList = true) {
-        // this.loading = true
-        // if (resetList) {
-        //   this.dataList = []
-        //   this.pageNo = 1
-        // }
-        // let data = await this.$api.XXX({})
-        // if (resetList) {
-        //   this.dataList = data.list
-        // } else {
-        //   this.dataList = this.dataList.concat(data.list)
-        // }
-        // this.finished = !data.hasNextPage
-        // this.loading = false
-        // this.pageNo++
+        this.loading = true
+        if (resetList) {
+          this.dataList = []
+          this.pageNo = 1
+        }
+        let data = await this.$api.XXX({})
+        if (resetList) {
+          this.dataList = data.list
+        } else {
+          this.dataList = this.dataList.concat(data.list)
+        }
+        this.finished = !data.hasNextPage
+        this.loading = false
+        this.pageNo++
       },
       onSearch () {
         this.loadData(true)

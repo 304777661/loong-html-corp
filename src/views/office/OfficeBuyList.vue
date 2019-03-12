@@ -1,18 +1,17 @@
 <template lang="pug">
-  div
-    search(placeholder="输入商品名称、料号、销售订单号等进行搜索" @search="onSearch")
-    van-tabs(v-model="active")
-      van-tab(title="标签 1")
-    <van-tabs v-model="active">
-  <van-tab title="标签 1">内容 1</van-tab>
-  <van-tab title="标签 2">内容 2</van-tab>
-  <van-tab title="标签 3">内容 3</van-tab>
-  <van-tab title="标签 4">内容 4</van-tab>
-  </van-tabs>
+  .OfficeBuyList
+    search(placeholder="输入公司名称进行搜索" @search="onSearch")
+    van-tabs(v-model="curTabIndex" :swipeable="swipeable" :line-width="18" @click="handleTabChanged")
+      van-tab(v-for="item in tabs" :key="item.id")
+        div(slot="title" ref="titelText") {{item.label}}
+          van-icon(name="arrow-down")
+    van-picker(show-toolbar :title="pickerTitle" :columns="columns" @cancel="pickerShow=false" @confirm="selectTwoMent" v-show="pickerShow")
     no-data(v-show="!loading")
     van-list(v-model="loading" :finished="finished" @load="onLoad")
       ul.wait-buy(v-for="(item, index) in dataList" :key="index")
-        li 销售单号：{{item.orderNumber}}
+        li
+          span 采购单号：{{item.orderNumber}}
+          span {{item.status}}
         li.list(v-for="(elem, index) in item.list" :key="index")
           img.goods-img(src="@img/goods-img.png")
           div
@@ -26,37 +25,45 @@
           span
             van-icon(name="friends-o")
             | {{item.sellPerson}}
+    my-button(:content="'新增采购订单'" @btnClick="goAddPage")
 </template>
 
 <script>
-  import MyTabs from '@components/MyTabs'
-
   export default {
-    name: 'ManageList',
-    components: {
-      MyTabs
-    },
+    name: 'OfficeBuyList',
     data () {
       return {
-        sectionContent: '',
-        pageNo: 1,
+        columns: [],
+        pickerShow: false,
+        swipeable: false,
         loading: false,
         finished: false,
-        btnShow: 0,
+        curTabIndex: 0,
+        pickerTitle: '',
         tabs: [{
           id: 0,
-          label: '全部订单'
+          label: '订单状态'
         }, {
           id: 1,
-          label: '销售订单'
+          label: '入库状态'
         }, {
           id: 2,
-          label: '备货订单'
+          label: '开票状态'
+        }, {
+          id: 3,
+          label: '付款状态'
         }],
+        myColumns: {
+          one: ['全部', '杭州2', '杭州3', '杭州4'],
+          two: ['全部', '宁波', '宁波', '宁波'],
+          three: ['全部', '温州', '温州', '温州'],
+          four: ['全部', '嘉兴2', '嘉兴3', '嘉兴4']
+        },
         dataList: [{
-          orderNumber: '销售单号：S20190101001',
+          orderNumber: 'S20190101001',
           deliveDate: '2000-10-12 00:00:00',
           sellPerson: '张三',
+          status: '进行中',
           list: [{
             title: '2P公端护套2P公端护套2P公端护套2P公端护套2P公端护套2P公端护套',
             no: '282104-1',
@@ -69,9 +76,10 @@
             yiBuy: '2200'
           }]
         }, {
-          orderNumber: '销售单号：S20190101001',
+          orderNumber: 'S20190101001',
           deliveDate: '2000-10-12 00:00:00',
           sellPerson: '张三',
+          status: '已入库',
           list: [{
             title: '2P公端护套2P公端护套2P公端护套2P公端护套2P公端护套2P公端护套',
             no: '282104-1',
@@ -109,12 +117,33 @@
       onLoad () {
         // this.loadData()
       },
-      async handleTabChanged (tabIndex) {
-        this.btnShow = tabIndex
-        await this.loadData()
+      async handleTabChanged (tabIndex, title) {
+        this.pickerShow = true
+        if (tabIndex === 0) {
+          this.columns = this.myColumns.one
+          this.pickerTitle = this.tabs[0].label
+        }
+        if (tabIndex === 1) {
+          this.columns = this.myColumns.two
+          this.pickerTitle = this.tabs[1].label
+        }
+        if (tabIndex === 2) {
+          this.columns = this.myColumns.three
+          this.pickerTitle = this.tabs[2].label
+        }
+        if (tabIndex === 3) {
+          this.columns = this.myColumns.four
+          this.pickerTitle = this.tabs[3].label
+        }
+        // await this.loadData()
+      },
+      selectTwoMent (value, index) {
+        this.$toast(`当前值：${value}, 当前索引：${index}`)
+        this.pickerShow = false
+        this.tabs[this.curTabIndex].label = value
       },
       goAddPage () {
-        this.$router.push(`/`)
+        this.$router.push(`/office/OfficeAddBuy`)
       }
     },
     created () {
@@ -125,9 +154,18 @@
 </script>
 
 <style scoped lang='sass'>
-  .van-list
-    background: #F7F8FA
-    color: rgba(155,155,155,1)
+  .OfficeBuyList
+    /deep/ .van-tabs__line
+      bottom: 22px
+      background: #333333
+      border-radius: 2px
+    /deep/ .van-tab
+      background-color: #F8FAFC
+      color: #ccc
+    /deep/ .van-icon-arrow-down
+      vertical-align: text-top
+      &--active
+        color: #333333
     .wait-buy
       padding: 8px 12px
       background-color: #fff
@@ -137,6 +175,7 @@
         padding: 6px
         font-size: 12px
         border-radius: 3px
+        @include hor-between-center
       li.end
         @include hor-between-center
         border-top: 1px solid rgba(238, 238, 238, 0.9)

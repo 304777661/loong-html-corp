@@ -15,6 +15,8 @@
 <script>
   export default {
     name: 'ProjectList',
+    components: {
+    },
     data () {
       return {
         keywords: null,
@@ -64,11 +66,15 @@
         // this.loadData()
       },
       goDetail (id) {
-        this.$router.push(`/common/depositoryDetail?id=$(id)`)
+        if (this.$route.query.black === '1') {
+          this.$router.go(-1)
+        }
+        this.$router.push(`/common/depositoryDetail?id=${id}`)
       }
     },
-    async onCreated () {
-      // await this.loadData()
+    created () {},
+    beforeDestroy () {
+      this.$eventBus.$emit('pickerDepository', { id: 11, value: '第一仓库' })
     }
   }
 </script>
