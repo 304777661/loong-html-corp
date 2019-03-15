@@ -8,7 +8,7 @@
         ul.wait-buy(v-for="(item, index) in dataList" :key="index")
             li 销售单号：{{item.orderNumber}}
               li.list(v-for="(elem, index) in item.list" :key="index")
-                van-checkbox(:name="checkboxFun(elem)")
+                van-checkbox(:name="elem.no")
                 img.goods-img(src="@img/goods-img.png")
                 div
                   p.title {{elem.title}}
@@ -25,6 +25,10 @@
               span
                 van-icon(name="friends-o")
                 | {{item.sellPerson}}
+    van-goods-action
+      van-goods-action-mini-btn(icon="cart-o" info="2" text="购物车" @click="onClickMiniBtn")
+      van-goods-action-big-btn(text="￥100000")
+      van-goods-action-big-btn(primary text="立即购买" @click="onClickBigBtn" to="/office/OfficeAddBuy")
 </template>
 
 <script>
@@ -101,6 +105,12 @@
       }
     },
     methods: {
+      onClickMiniBtn () {
+        this.$toast('点击图标')
+      },
+      onClickBigBtn () {
+        this.$toast('点击按钮')
+      },
       checkboxFun (arg) {
         return arg.no
       },

@@ -99,7 +99,6 @@
       },
       selectCancel () {
         this.pickerShow = false
-        return false
       },
       goOtherPage (id) {
         this.$router.push(`office/OfficeBuyList`)

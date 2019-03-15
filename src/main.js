@@ -33,7 +33,10 @@ import {
   Tag,
   Stepper,
   Checkbox,
-  CheckboxGroup
+  CheckboxGroup,
+  GoodsAction,
+  GoodsActionBigBtn,
+  GoodsActionMiniBtn
 } from 'vant'
 import loading from './components/Loading'
 import NoData from './components/NoData'
@@ -63,6 +66,9 @@ Vue.use(Icon)
   .use(Stepper)
   .use(Checkbox)
   .use(CheckboxGroup)
+  .use(GoodsAction)
+  .use(GoodsActionBigBtn)
+  .use(GoodsActionMiniBtn)
 
 Vue.component('loading', loading)
 Vue.component('NoData', NoData)
