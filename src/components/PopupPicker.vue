@@ -19,8 +19,8 @@
     },
     methods: {
       onConfirm (value = '', index = 0) {
-        this.$toast(`当前值：${value}, 当前索引：${index}`)
-        this.$emit('selectVal', index)
+        this.$toast(`当前值：${value.text}, 当前索引：${index}`)
+        this.$emit('selectVal', { text: value.text, index: index, id: value.id })
       },
       onCancel () {
         this.$emit('selectCancel')
