@@ -163,6 +163,25 @@ const router = new Router({
           title: '待采购'
         }
       }]
+    },
+    //////////////////////////////////////////////////////////办公模块路由
+    {path: '/store',
+      component: view('EmptyTemplate'),
+      children: [{
+        path: 'deliveryList',
+        name: 'DeliveryList',
+        component: view('store/DeliveryList'),
+        meta: {
+          title: '发货管理'
+        }
+      },{
+        path: 'deliveryDetail',
+        name: 'DeliveryDetail',
+        component: view('store/DeliveryDetail'),
+        meta: {
+          title: '发货详情'
+        }
+      }]
     }
   ]
 })
