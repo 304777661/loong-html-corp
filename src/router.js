@@ -122,7 +122,47 @@ const router = new Router({
       meta: {
         title: '商品管理列表'
       }
-    }]
+    },
+      {
+      path: 'Manage',
+      name: 'Manage',
+      component: view('sell/quotationManagement/Manage'),
+      meta: {
+        title: '报价管理'
+      }
+    },
+      {
+        path: 'QuotationDetails',
+        name: 'QuotationDetails',
+        component: view('sell/quotationManagement/QuotationDetails'),
+        meta: {
+          title: '报价详情'
+        }
+      },
+      {
+        path: 'NewQuotation',
+        name: 'NewQuotation',
+        component: view('sell/quotationManagement/NewQuotation'),
+        meta: {
+          title: '新增报价'
+        }
+      },
+      {
+        path: 'ChoseCompany',
+        name: 'ChoseCompany',
+        component: view('sell/quotationManagement/ChoseCompany'),
+        meta: {
+          title: '选择公司'
+        }
+      },
+      {
+        path: 'CustomerManagement',
+        name: 'CustomerManagement',
+        component: view('sell/quotationManagement/CustomerManagement'),
+        meta: {
+          title: '客户管理'
+        }
+      }]
   },
     //////////////////////////////////////////////////////////办公模块路由
     {path: '/office',

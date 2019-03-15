@@ -15,47 +15,89 @@
             | &nbsp;
             van-tag(plain type="danger") 发动机
           div
-            van-stepper(v-model="stepperVal" integer="true" min="0")
+            van-stepper(v-model="stepperVal" :integer="true" min="0")
       van-cell(title="合计" value="请选择" value-class="redColor")
         div(slot="") ￥1300
-      van-cell(title="交货期限" is-link value="请选择" @click="pickerPop")
-      van-cell(title="付款方式" is-link value="请选择")
-      van-cell(title="开票方式" is-link value="请选择")
-    van-popup(v-model="pickerShow" position="bottom" @open="pickerShow=true" @close="pickerShow=false" @click-overlay="pickerShow=false")
-      van-picker(:columns="columns" v-if="pickerShow" show-toolbar @cancel="onCancel" @confirm="onConfirm")
-    my-button(:content="生成采购订单" @btnClick="goOtherPage")
+      van-cell(title="交货期限" is-link :value="goodsDateText" @click="pickerPop(payGoodsDate)" arrow-direction="down")
+      van-cell(title="付款方式" is-link :value="payTypeText" @click="pickerPop(payType)" arrow-direction="down")
+      van-cell(title="开票方式" is-link :value="ticketTypeText" @click="pickerPop(ticketType)" arrow-direction="down")
+    my-button(:content="'生成采购订单'" @btnClick="goOtherPage")
+    popup-picker(:columns="columns" :pickerShow="pickerShow" @selectVal="selectVal" @selectCancel="selectCancel" )
 </template>
 
 <script>
-
+  import PopupPicker from '@components/PopupPicker'
   export default {
     name: 'OfficeAddBuy',
-    components: {},
+    components: {
+      PopupPicker
+    },
     data () {
       return {
+        goodsDateText: '请选择',
+        payTypeText: '请选择',
+        ticketTypeText: '请选择',
         imgUrl: require('../../../public/goods-img.png'),
         stepperVal: 0,
-        popShow: false,
         pickerShow: false,
+        targetObj: null,
         orderData: {
           buyPeople: '张三'
         },
-        columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
+        payGoodsDate: [{
+          id: 0,
+          text: '全部商品'
+        }, {
+          id: 0,
+          text: '我的商品'
+        }, {
+          id: 0,
+          text: '我借的'
+        }, {
+          id: 0,
+          text: '借我的'
+        }],
+        payType: [{
+          id: 1,
+          text: '货到付款'
+        }, {
+          id: 1,
+          text: '预付发货'
+        }, {
+          id: 1,
+          text: '信用发货'
+        }],
+        ticketType: [{
+          id: 2,
+          text: '货到开票'
+        }, {
+          id: 2,
+          text: '预付发票'
+        }],
+        columns: []
       }
     },
     methods: {
       pickerDepository (id) {
         this.$router.push(`/common/DepositoryList?black=1&id=${id}`)
       },
-      pickerPop () {
+      pickerPop (arg) {
+        this.columns = arg
         this.pickerShow = true
       },
-      onConfirm (value, index) {
-        this.$toast(`当前值：${value}, 当前索引：${index}`)
+      selectVal (arg) {
+        if (arg.id === 0) {
+          this.goodsDateText = arg.text
+        }
+        if (arg.id === 1) {
+          this.payTypeText = arg.text
+        }
+        if (arg.id === 2) {
+          this.ticketTypeText = arg.text
+        }
         this.pickerShow = false
       },
-      onCancel () {
-        this.$toast('取消')
+      selectCancel () {
         this.pickerShow = false
       },
       goOtherPage (id) {

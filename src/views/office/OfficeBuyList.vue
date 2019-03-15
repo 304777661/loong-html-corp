@@ -5,7 +5,6 @@
       van-tab(v-for="item in tabs" :key="item.id")
         div(slot="title" ref="titelText") {{item.label}}
           van-icon(name="arrow-down")
-    van-picker(show-toolbar :title="pickerTitle" :columns="columns" @cancel="pickerShow=false" @confirm="selectTwoMent" v-show="pickerShow")
     no-data(v-show="!loading")
     van-list(v-model="loading" :finished="finished" @load="onLoad")
       ul.wait-buy(v-for="(item, index) in dataList" :key="index")
@@ -26,11 +25,17 @@
             van-icon(name="friends-o")
             | {{item.sellPerson}}
     my-button(:content="'新增采购订单'" @btnClick="goAddPage")
+    popup-picker(:columns="columns" :pickerShow="pickerShow" @selectVal="selectVal" @selectCancel="selectCancel" )
+
 </template>
 
 <script>
+  import PopupPicker from '@components/PopupPicker'
   export default {
     name: 'OfficeBuyList',
+    components: {
+      PopupPicker
+    },
     data () {
       return {
         columns: [],
@@ -54,10 +59,49 @@
           label: '付款状态'
         }],
         myColumns: {
-          one: ['全部', '杭州2', '杭州3', '杭州4'],
-          two: ['全部', '宁波', '宁波', '宁波'],
-          three: ['全部', '温州', '温州', '温州'],
-          four: ['全部', '嘉兴2', '嘉兴3', '嘉兴4']
+          one: [{
+            id: 0,
+            text: '全部商品'
+          }, {
+            id: 0,
+            text: '我的商品'
+          }, {
+            id: 0,
+            text: '我借的'
+          }, {
+            id: 0,
+            text: '借我的'
+          }],
+          two: [{
+            id: 1,
+            text: '货到付款'
+          }, {
+            id: 1,
+            text: '预付发货'
+          }, {
+            id: 1,
+            text: '信用发货'
+          }],
+          three: [{
+            id: 2,
+            text: '222'
+          }, {
+            id: 2,
+            text: '222'
+          }, {
+            id: 2,
+            text: '222'
+          }],
+          four: [{
+            id: 3,
+            text: '33'
+          }, {
+            id: 3,
+            text: '33'
+          }, {
+            id: 3,
+            text: '333'
+          }]
         },
         dataList: [{
           orderNumber: 'S20190101001',
@@ -118,6 +162,7 @@
         // this.loadData()
       },
       async handleTabChanged (tabIndex, title) {
+        // this.columns = arg
         this.pickerShow = true
         if (tabIndex === 0) {
           this.columns = this.myColumns.one
@@ -137,10 +182,13 @@
         }
         // await this.loadData()
       },
-      selectTwoMent (value, index) {
-        this.$toast(`当前值：${value}, 当前索引：${index}`)
+      selectCancel () {
         this.pickerShow = false
-        this.tabs[this.curTabIndex].label = value
+      },
+      selectVal (arg) {
+        console.log(arg)
+        this.tabs[this.curTabIndex].label = arg.text
+        this.pickerShow = false
       },
       goAddPage () {
         this.$router.push(`/office/OfficeAddBuy`)
