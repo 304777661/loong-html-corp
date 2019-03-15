@@ -175,4 +175,6 @@
           p.between
             display: flex
             justify-content: space-between
+    /deep/.van-tabs__line
+      background: #333333
 </style>

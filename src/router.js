@@ -204,7 +204,6 @@ const router = new Router({
         }
       }]
     },
-    //////////////////////////////////////////////////////////仓库模块路由
     {path: '/store',
       component: view('EmptyTemplate'),
       children: [{
@@ -269,8 +268,25 @@ const router = new Router({
         component: view('store/StoreDetail'),
         meta: {
           title: '库存详情'
+
         }
-      }]
+      },
+        {
+            path: 'deliveryList',
+            name: 'DeliveryList',
+            component: view('store/DeliveryList'),
+            meta: {
+              title: '发货管理'
+            }
+          },{
+            path: 'deliveryDetail',
+            name: 'DeliveryDetail',
+            component: view('store/DeliveryDetail'),
+            meta: {
+              title: '发货详情'
+            }
+        }
+      ]
     }
   ]
 })
