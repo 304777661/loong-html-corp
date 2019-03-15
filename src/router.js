@@ -203,6 +203,74 @@ const router = new Router({
           title: '待采购'
         }
       }]
+    },
+    //////////////////////////////////////////////////////////仓库模块路由
+    {path: '/store',
+      component: view('EmptyTemplate'),
+      children: [{
+        path: 'CodeStorage',
+        name: 'CodeStorage',
+        component: view('store/codeStorage/CodeStorage'),
+        meta: {
+          title: '扫码入库'
+        }
+      }, {
+        path: 'CodeStorageList',
+        name: 'CodeStorageList',
+        component: view('store/codeStorage/CodeStorageList'),
+        meta: {
+          title: '扫码入库列表'
+        }
+      }, {
+        path: 'OrderStorage',
+        name: 'OrderStorage',
+        component: view('store/codeStorage/OrderStorage'),
+        meta: {
+          title: '订单入库'
+        }
+      }, {
+        path: 'ShipManageList',
+        name: 'ShipManageList',
+        component: view('store/shipManage/ShipManageList'),
+        meta: {
+          title: '发货管理列表'
+        }
+      }, {
+        path: 'GoodsOut',
+        name: 'GoodsOut',
+        component: view('store/shipManage/GoodsOut'),
+        meta: {
+          title: '商品出库'
+        }
+      }, {
+        path: 'ShipNotes',
+        name: 'ShipNotes',
+        component: view('store/ShipNotes'),
+        meta: {
+          title: '发货记录'
+        }
+      }, {
+        path: 'StorageNotes',
+        name: 'StorageNotes',
+        component: view('store/StorageNotes'),
+        meta: {
+          title: '入库记录'
+        }
+      }, {
+        path: 'StoreCount',
+        name: 'StoreCount',
+        component: view('store/StoreCount'),
+        meta: {
+          title: '库存统计'
+        }
+      }, {
+        path: 'StoreDetail',
+        name: 'StoreDetail',
+        component: view('store/StoreDetail'),
+        meta: {
+          title: '库存详情'
+        }
+      }]
     }
   ]
 })

@@ -9,6 +9,7 @@ import './assets/styles/vant.sass'
 import api from './api'
 import enums from './utils/enums'
 import filters from './utils/filters'
+import './utils/date'
 import eventBus from './utils/eventBus'
 import {
   Icon,
